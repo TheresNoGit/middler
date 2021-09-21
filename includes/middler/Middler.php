@@ -62,4 +62,17 @@ class Middler
             return false;
         }
     }
+
+    /**
+     * Wrapper to output a JSON response
+     *
+     * @param array $return Array containing response
+     * 
+     * @return void
+     */
+    public function JSONResponse(array $return)
+    {
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($return);
+    }
 }

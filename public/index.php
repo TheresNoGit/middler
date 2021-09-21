@@ -18,8 +18,6 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $github = new middler\GitHub();
 $middler = new middler\Middler();
 
-header('Content-Type: application/json; charset=utf-8');
-
 if ($github->getHookEvent() === "push") {
     $payload = $github->decodePayload($_POST['payload']);
 
@@ -33,27 +31,34 @@ if ($github->getHookEvent() === "push") {
             }
             $return = array(
                 'success' => true,
-                'error' => 'message(s) sent'
+                'detail' => 'message(s) sent'
             );
         } else {
             $return = array(
                 'success' => false,
-                'error' => 'repo not permitted'
+                'detail' => 'repo not permitted'
             );
         }
     } else {
         $return = array(
             'success' => false,
-            'error' => 'unable to decode payload'
+            'detail' => 'unable to decode payload'
         );
     }
 } else {
     $return = array(
         'success' => false,
-        'error' => 'webhook event not supported'
+        'detail' => 'webhook event not supported'
     );
 }
 
 if (isset($return)) {
-    echo json_encode($return);
+    $middler->JSONResponse($return);
+} else {
+    $middler->JSONResponse(
+        array(
+            'success' => false,
+            'detail' => 'something went very wrong'
+        )
+    );
 }
