@@ -54,10 +54,10 @@ class Middler
      */
     public function checkAllowedRegex(array $payload)
     {
-        $regex = $this->_config['allowed_regex'];
+        $regex = "/" . $this->_config['allowed_regex'] . "/";
         $repoName = (new GitHub())->getRepoName($payload);
         if ($repoName) {
-            return preg_match("/$regex/", $repoName);
+            return preg_match($regex, $repoName);
         } else {
             return false;
         }
