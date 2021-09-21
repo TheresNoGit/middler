@@ -97,12 +97,38 @@ class GitHub
     }
 
     /**
+     * Get the relevant feeds to send to from the payload
+     *
+     * @param array $payload The decoded payload array
+     * 
+     * @return mixed
+     */
+    public function getRepoFeeds(array $payload)
+    {
+        $repoName = $this->getRepoName($payload);
+        if ($repoName) {
+            if (isset($this->_config['repos'][$repoName]['feeds'])) {
+                return $this->_config['repos'][$repoName]['feeds'];
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * Get the hook event type
      *
      * @return mixed
      */
     public function getHookEvent()
     {
-        return $_SERVER['HTTP_X_GITHUB_EVENT'];
+        if (isset($_SERVER['HTTP_X_GITHUB_EVENT'])) {
+            return $_SERVER['HTTP_X_GITHUB_EVENT'];
+        } else {
+            return false;
+        }
+        
     }
 }

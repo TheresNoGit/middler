@@ -18,11 +18,15 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $github = new middler\GitHub();
 
 if ($github->getHookEvent() === "push") {
-    $discord = new middler\Discord('teams_feed');
+    
     $payload = $github->decodePayload($_POST['payload']);
 
     if ($payload) {
-        $pager = $github->getRepoPager($payload);
-        $discord->sendGHPush($payload, $pager);
+        $feeds = $github->getRepoFeeds($payload);
+        foreach ($feeds as $feed) {
+            $discord = new middler\Discord($feed);
+            $pager = $github->getRepoPager($payload);
+            $discord->sendGHPush($payload, $pager);
+        }
     }
 }

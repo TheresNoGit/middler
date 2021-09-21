@@ -47,8 +47,8 @@ class Discord
             true
         );
         
-        if (isset($config['discord_webhooks'][$feed])) {
-            $this->webhook = $config['discord_webhooks'][$feed];
+        if (isset($this->_config['discord_webhooks'][$feed])) {
+            $this->webhook = $this->_config['discord_webhooks'][$feed];
         }
     }
 
