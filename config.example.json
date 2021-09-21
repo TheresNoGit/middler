@@ -1,0 +1,13 @@
+{
+    "discord_webhooks": {
+        "feed_name": "webhook_url"
+    },
+    "coded_page": {
+        "pager_name": "role_id"
+    },
+    "repos": {
+        "repo_name": {
+            "pager": "pager_name"
+        }
+    }
+}
