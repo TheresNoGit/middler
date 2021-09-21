@@ -39,7 +39,7 @@ These are where you define the webhook URLs for your discord channels. The `feed
 ```
 
 ### coded_page
-These are discord role IDs which can be set (below) to be pinged every time a certain repo is updated.
+These are [discord role IDs](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-) which can be set (below) to be pinged every time a certain repo is updated.
 
 #### Example
 ```json
