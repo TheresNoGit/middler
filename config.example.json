@@ -1,5 +1,5 @@
 {
-    "allowed_regex": "/regex_for_repo_names/",
+    "allowed_regex": "regex_for_repo_names",
     "discord_webhooks": {
         "feed_name": "webhook_url"
     },
