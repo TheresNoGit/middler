@@ -1,6 +1,8 @@
 # middler
 middler is a quick and dumb bit of middleware so that GitHub Webhooks can talk to Discord Webhooks without me turning to alcohol again.
 
+![image](https://user-images.githubusercontent.com/375162/134202564-6b6ac6d2-3943-4c3d-8628-4bc4bd5f1416.png)
+
 ## Config
 ```json
 {
