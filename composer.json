@@ -2,6 +2,7 @@
     "name": "theresnogit/middler",
     "type": "project",
     "description": "middler is a quick and dumb bit of middleware so that GitHub Webhooks can talk to Discord Webhooks.",
+    "license": "MIT",
     "autoload": {
         "psr-4": {"middler\\": "includes/middler/"}
     },
