@@ -138,14 +138,14 @@ class Discord
      * 
      * @return mixed
      */
-    public function sendGHPush(array $payload, mixed $pagerName = false)
+    public function sendGHPush(array $payload, mixed $pagerName = null)
     {
         if (isset($payload['repository'], $payload['after'], $payload['commits'])) {
             $repoName = $payload['repository']['full_name'];
             $commitUrl = $payload['repository']['html_url'] . "/commit/" . $payload['after'];
             $commitMessage = $payload['commits'][0]['message'];
 
-            if ($pagerName) {
+            if ($pagerName !== null || $pagerName !== false) {
                 $codedPage = $this->getCodedPage($pagerName);
                 if ($codedPage) {
                     $pageStr = "\nCoded page: <@&$codedPage>\n";
