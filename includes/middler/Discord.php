@@ -55,11 +55,11 @@ class Discord
     /**
      * Get the relevant coded page ID from the config.json file
      *
-     * @param mixed $pagerName Pager name
+     * @param string $pagerName Pager name
      * 
      * @return mixed
      */
-    public function getCodedPage(mixed $pagerName)
+    public function getCodedPage(string $pagerName)
     {
         if (isset($this->_config['coded_page'][$pagerName])) {
             return $this->_config['coded_page'][$pagerName];
