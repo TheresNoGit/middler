@@ -133,7 +133,7 @@ class Discord
     /**
      * Send a GitHub push event message
      *
-     * @param array $payload   Webhook payload
+     * @param array  $payload   Webhook payload
      * @param string $pagerName Coded page role to mention
      * 
      * @return mixed

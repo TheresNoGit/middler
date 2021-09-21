@@ -16,17 +16,44 @@
 declare(strict_types=1);
 require_once __DIR__ . '/../vendor/autoload.php';
 $github = new middler\GitHub();
+$middler = new middler\Middler();
+
+header('Content-Type: application/json; charset=utf-8');
 
 if ($github->getHookEvent() === "push") {
-    
     $payload = $github->decodePayload($_POST['payload']);
 
     if ($payload) {
-        $feeds = $github->getRepoFeeds($payload);
-        foreach ($feeds as $feed) {
-            $discord = new middler\Discord($feed);
-            $pager = $github->getRepoPager($payload);
-            $discord->sendGHPush($payload, $pager);
+        if ($middler->checkAllowedRegex($payload)) {
+            $feeds = $github->getRepoFeeds($payload);
+            foreach ($feeds as $feed) {
+                $discord = new middler\Discord($feed);
+                $pager = $github->getRepoPager($payload);
+                $discord->sendGHPush($payload, $pager);
+            }
+            $return = array(
+                'success' => true,
+                'error' => 'message(s) sent'
+            );
+        } else {
+            $return = array(
+                'success' => false,
+                'error' => 'repo not permitted'
+            );
         }
+    } else {
+        $return = array(
+            'success' => false,
+            'error' => 'unable to decode payload'
+        );
     }
+} else {
+    $return = array(
+        'success' => false,
+        'error' => 'webhook event not supported'
+    );
+}
+
+if (isset($return)) {
+    echo json_encode($return);
 }
