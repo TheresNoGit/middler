@@ -134,11 +134,11 @@ class Discord
      * Send a GitHub push event message
      *
      * @param array $payload   Webhook payload
-     * @param mixed $pagerName Coded page role to mention
+     * @param string $pagerName Coded page role to mention
      * 
      * @return mixed
      */
-    public function sendGHPush(array $payload, mixed $pagerName = null)
+    public function sendGHPush(array $payload, string $pagerName = null)
     {
         if (isset($payload['repository'], $payload['after'], $payload['commits'])) {
             $repoName = $payload['repository']['full_name'];
